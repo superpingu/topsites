@@ -1,0 +1,45 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(40, 48, 51);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content {
+  position: absolute;
+  top: 6vh;
+  left: 6vw;
+  justify-content: center;
+  width: 88vw;
+  height: 88vh;
+}
+
+.site {
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  font-family: Avenir;
+  font-size: 0.7vw;
+  color:#aaaaaa;
+}
+
+td {
+  justify-content: center;
+}
+
+.sitepic {
+  width: 19.5vw;
+  height: 19.5vh;
+  box-shadow: 0 0 10px #111111;
+}
+
+.sitepic:hover {
+  box-shadow: 0 0 8px #dddddd;
+}
+
+.errorpic {
+  margin: auto;
+  background-color: grey;
+}
