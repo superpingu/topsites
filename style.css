@@ -21,7 +21,7 @@ html, body {
   justify-content: center;
   text-align: center;
   font-family: Avenir;
-  font-size: 0.7vw;
+  font-size: 1.2vw;
   color:#aaaaaa;
 }
 
@@ -32,11 +32,11 @@ td {
 .sitepic {
   width: 19.5vw;
   height: 19.5vh;
-  box-shadow: 0 0 10px #111111;
+  box-shadow: 0 0 20px #111111;
 }
 
 .sitepic:hover {
-  box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 16px #dddddd;
 }
 
 .errorpic {
