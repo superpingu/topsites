@@ -36,7 +36,7 @@ td {
 }
 
 .sitepic:hover {
-  box-shadow: 0 0 16px #dddddd;
+  box-shadow: 0 0 18px 3px #dddddd;
 }
 
 .errorpic {
