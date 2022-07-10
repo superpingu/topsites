@@ -32,19 +32,26 @@ function storePic(site, blob) {
   }
 }
 
+// show the grid
 for(const site in conf) {
-  if(localStorage.getItem(conf[site] + '_exp')) {
-    today = new Date();
-    expiry = new Date(parseInt(localStorage.getItem(conf[site] + '_exp')));
-    if(today > expiry) {
-      localStorage.removeItem(conf[site]);
-      console.log(conf[site]);
-    }
+  if(!localStorage.getItem(conf[site])) {
+    // display a placeholder
+    createErrorView(site, conf[site]);
+  } else {
+    // display the screenshot
+    createSiteView(site, conf[site], localStorage.getItem(conf[site]));
   }
+}
 
-  if(!localStorage.getItem(conf[site])) { // no cached snapshot for this site
-    fetch('https://api.apiflash.com/v1/urltoimage?access_key=' + localStorage.getItem('apiflashKey') + '&url=https://' + conf[site]
-      + '&width=' + Math.round(window.innerWidth*1.4) + '&height=' + Math.round(window.innerHeight*1.4))
+// refresh sites screenshots
+for(const site in conf) {
+  // check site screenshot expiration date
+  expiry = parseInt(localStorage.getItem(conf[site] + '_exp'))
+  expired = new Date() > new Date(isNaN(expiry) ? 0 : expiry)
+
+  if(!localStorage.getItem(conf[site]) || expired) { // no cached snapshot for this site or expired
+    fetch('http://bonetti.io:3032/websnap/img/?url=https://' + conf[site]
+      + '&width=' + Math.round(window.innerWidth*1.3) + '&height=' + Math.round(window.innerHeight*1.3))
     .then(function(response) {
       if(response.ok)
         return response.blob();
@@ -53,12 +60,7 @@ for(const site in conf) {
     }).then(function(picture) {
       if(!('error_type' in picture)) {
         storePic(site, picture);
-      } else {
-        console.log(picture);
-        createErrorView(site, conf[site]);
       }
     });
-  } else {
-    createSiteView(site, conf[site], localStorage.getItem(conf[site]));
   }
 }
